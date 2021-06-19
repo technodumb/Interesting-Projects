@@ -11,26 +11,28 @@ import wolframalpha
 import json
 import requests
 
+name = 'Jarvis'
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
-engine.setProperty('voice',voices[0].id)
+engine.setProperty('voice',voices[1].id)
 
 def speak(text):
+    print(text)
     engine.say(text)
     engine.runAndWait()
 
 def wishMe():
     hour=datetime.datetime.now().hour
     if hour>=0 and hour<12:
-        speak("Hello,Good Morning")
-        print("Hello,Good Morning")
+        speak("Hello, Good Morning")
+        # print("Hello,Good Morning")
     elif hour>=12 and hour<18:
-        speak("Hello,Good Afternoon")
-        print("Hello,Good Afternoon")
+        speak("Hello, Good Afternoon")
+        # print("Hello,Good Afternoon")
     else:
-        speak("Hello,Good Evening")
-        print("Hello,Good Evening")
+        speak("Hello, Good Evening")
+        # print("Hello,Good Evening")
 
 def takeCommand():
     r=sr.Recognizer()
@@ -44,23 +46,23 @@ def takeCommand():
 
         except Exception as e:
             speak("Pardon me, please say that again")
-            return "None"
+            return takeCommand()
         return statement
 
 # print("Loading your AI personal assistant Neo")
-# speak("Loading your AI personal assistant Neo")
+speak(f"Loading your AI personal assistant {name}")
 wishMe()
 
 if __name__=='__main__':
     while True:
-        speak("Tell me how can I help you now?")
+        # speak("Tell me how can I help you now?")
         statement = takeCommand().lower()
         if statement==0:
             continue
 
-        elif "good bye" in statement or "ok bye" in statement or "stop" in statement:
-            speak('your personal assistant G-one is shutting down,Good bye')
-            print('your personal assistant G-one is shutting down,Good bye')
+        elif "bye" in statement or "stop" in statement:
+            speak(f'Your personal assistant {name} is shutting down... Good bye')
+            # print('your personal assistant G-one is shutting down,Good bye')
             break
 
         
@@ -69,7 +71,7 @@ if __name__=='__main__':
             statement =statement.replace("wikipedia", "")
             results = wikipedia.summary(statement, sentences=3)
             speak("According to Wikipedia")
-            print(results)
+            # print(results)
             speak(results)
         elif 'open youtube' in statement:
             webbrowser.open_new_tab("https://www.youtube.com")
@@ -80,6 +82,13 @@ if __name__=='__main__':
             webbrowser.open_new_tab("https://www.google.com")
             speak("Google chrome is open now")
             time.sleep(5)
+
+        elif 'change' in statement and 'name' in statement:
+            speak("Do you want me to change my name?")
+            if 'yes' in takeCommand().lower():
+                speak("What is my new name?")
+                name = takeCommand().capitalize()
+                speak(f"{name} is my new name.")
 
         elif 'open gmail' in statement:
             webbrowser.open_new_tab("gmail.com")
@@ -94,4 +103,13 @@ if __name__=='__main__':
             speak("What should I say?")
             rep = takeCommand().lower()
             speak(rep)
+        
+        elif 'you are the best' in statement:
+            speak("No... You are the best.")
+        
+        elif 'thank you' in statement:
+            speak('YEAH BITCH')
+
+        else:
+            speak("I don't know how to do that")
         
