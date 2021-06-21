@@ -1,17 +1,20 @@
 import speech_recognition as sr
 import pyttsx3
-from gtts import gTTS
 import datetime
 import wikipedia
 import webbrowser
-import os
+from tkinter import *
+
 import time
-import subprocess
-import wolframalpha
-import json
-import requests
+# import subprocess
+# import wolframalpha
+# import json
+# import requests
 
 name = 'Jarvis'
+
+root = Tk()
+root.title('Jarvis - Your personal assistant')
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -50,20 +53,19 @@ def takeCommand():
         return statement
 
 # print("Loading your AI personal assistant Neo")
-speak(f"Loading your AI personal assistant {name}")
-wishMe()
+# speak(f"Loading your AI personal assistant {name}")
+# wishMe()
 
-if __name__=='__main__':
-    while True:
+
+
+def work():
         # speak("Tell me how can I help you now?")
         statement = takeCommand().lower()
-        if statement==0:
-            continue
 
-        elif "bye" in statement or "stop" in statement:
-            speak(f'Your personal assistant {name} is shutting down... Good bye')
+        if "bye" in statement or "stop" in statement:
+            speak(f'Your personal assistant  is shutting down... Good bye')
             # print('your personal assistant G-one is shutting down,Good bye')
-            break
+            root.quit()
 
         
         elif 'wikipedia' in statement:
@@ -113,3 +115,8 @@ if __name__=='__main__':
         else:
             speak("I don't know how to do that")
         
+
+
+bigbutton = Button(root, text='Speak', padx=30, pady=30, command= lambda: work())
+bigbutton.grid(row=1, column=1)
+root.mainloop()
