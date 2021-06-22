@@ -1,5 +1,6 @@
 import pyttsx3
 import random
+import tkinter
 
 
 locations = 'Speech recog typer\\english-words\\'
