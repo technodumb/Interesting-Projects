@@ -7,9 +7,10 @@ while True:
     if keyboard.is_pressed('x'):
         keyboard.send("Backspace")
         for i in range(n_members):
+            time.sleep(0.05)
             keyboard.write("@")
             for j in range(i):
                 keyboard.send("Down")
             keyboard.send("Enter")
-            time.sleep(0.05)
+            keyboard.write("\t\t\t")
         break
