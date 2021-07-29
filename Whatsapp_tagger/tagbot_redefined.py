@@ -6,12 +6,13 @@ print("\n\nSelect the group input box and press x to activate.")
 while True:
     if keyboard.is_pressed('x'):
         keyboard.send("Backspace")
+        keyboard.write("/")
         for i in range(n_members):
-            time.sleep(0.01)
+            time.sleep(0.001)
             keyboard.write("@")
             for j in range(i):
                 keyboard.send("Down")
-                time.sleep(0.01)
+                time.sleep(0.001)
             keyboard.send("Enter")
             # keyboard.write(".")
             if i==0:

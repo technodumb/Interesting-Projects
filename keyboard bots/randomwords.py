@@ -9,12 +9,12 @@ def load_words():
 
     return sorted(tuple(valid_words))
 
-q_words = [x for x in load_words() if x[0]=='q']
+a_words = [x for x in load_words() if x[0]=='a']
 
 while True:
     if keyboard.is_pressed('Space'):
-        for i in range(len(q_words)):
-            keyboard.write(q_words[i])
+        for i in range(50):
+            keyboard.write(random.choice(a_words))
             keyboard.send('Enter')
-            time.sleep(0.01)
+            time.sleep(1)
         break   

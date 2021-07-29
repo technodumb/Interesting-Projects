@@ -18,7 +18,7 @@ while True:
     if keyboard.is_pressed('q'):
         while keyboard.is_pressed('q'):
             pass
-        for i in range(10):
+        for i in range(17):
             click(pixel)
-            sleep(0.02)
+            sleep(0.2)
         break
